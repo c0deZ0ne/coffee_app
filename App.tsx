@@ -7,12 +7,18 @@ import HomeScreen from './src/screens/HomeScreen';
 // import FavoriteScreen from './src/screens/FavoriteScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import PaymentScreen from './src/screens/PaymentScreen';
+import TabNavigator from './src/navigation/TabNavigator';
 
 const stack = createNativeStackNavigator();
 const App = () => {
   return (
     <NavigationContainer>
       <stack.Navigator screenOptions={{headerShown: false}}>
+        <stack.Screen
+          name="Tabs"
+          component={TabNavigator}
+          options={{animation: 'slide_from_bottom'}}
+        />
         <stack.Screen
           name="Details"
           component={DetailsScreen}
