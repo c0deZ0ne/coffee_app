@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React from 'react';
+import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import HomeScreen from './src/screens/HomeScreen';
@@ -8,9 +8,14 @@ import HomeScreen from './src/screens/HomeScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import PaymentScreen from './src/screens/PaymentScreen';
 import TabNavigator from './src/navigation/TabNavigator';
+import log from './src/utils/logger';
 
 const stack = createNativeStackNavigator();
 const App = () => {
+  // useEffect(() => {
+  //   log.info('App mounted');
+  //   log.info('App is running');
+  // }, []);
   return (
     <NavigationContainer>
       <stack.Navigator screenOptions={{headerShown: false}}>
