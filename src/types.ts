@@ -13,3 +13,8 @@ export interface GradientBGIconProps {
   color: string;
   size: number;
 }
+
+export interface SearchTextInput {
+  value: string;
+  handleSearch: (search: string) => void;
+}

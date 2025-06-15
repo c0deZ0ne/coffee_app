@@ -5,14 +5,15 @@ import {useStore} from '../store/store';
 import log from '../utils/logger';
 import {get} from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 import {getCategories, getCoffeeList} from '../utils/categories';
-import {COLORS} from '../theme/theme';
+import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {HeaderBar} from '../components/HeaderBar';
+import SearchInput from '../components/SearchInput';
 const HomeScreen = () => {
   const CoffeeList = useStore((state: any) => state.CoffeeList);
   const BeansList = useStore((state: any) => state.BeansList);
   const [categories, setCategories] = React.useState(getCategories(CoffeeList));
-  const [search, setSearch] = React.useState(undefined);
+  const [search, setSearch] = React.useState('');
   const [categoryIndex, setCategoryIndex] = React.useState({
     index: 0,
     category: categories[0],
@@ -29,6 +30,13 @@ const HomeScreen = () => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={styles.scrollViewContainerFlex}>
         <HeaderBar title={'Home'} />
+        <Text style={styles.screenTitle}>
+          Find The Best Coffee{'\n'}For You
+        </Text>
+        <SearchInput
+          value={search}
+          handleSearch={setSearch}
+        />
       </ScrollView>
     </View>
   );
@@ -37,6 +45,12 @@ const HomeScreen = () => {
 export default HomeScreen;
 
 const styles = StyleSheet.create({
+  screenTitle: {
+    fontSize: FONTSIZE.size_28,
+    fontFamily: FONTFAMILY.poppins_extrabold,
+    color: COLORS.primaryWhiteHex,
+    paddingLeft: SPACING.space_32,
+  },
   text: {
     fontSize: 20,
     color: 'black',

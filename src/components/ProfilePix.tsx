@@ -2,7 +2,7 @@ import {StyleSheet, View, Image} from 'react-native';
 import React from 'react';
 import {COLORS, SPACING} from '../theme/theme';
 
-const ProflePix = () => {
+const ProfilePix = () => {
   return (
     <View style={styles.ImageContainer}>
       <Image
@@ -13,7 +13,7 @@ const ProflePix = () => {
   );
 };
 
-export default ProflePix;
+export default ProfilePix;
 
 const styles = StyleSheet.create({
   ImageContainer: {
