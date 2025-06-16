@@ -1,7 +1,7 @@
 import {StyleSheet, View, Text} from 'react-native';
 import React from 'react';
 import {HeaderBarProps} from '../types';
-import {COLORS, FONTFAMILY, FONTSIZE, SPACING} from '../theme/theme';
+import {COLORS, FONTFAMILY, FONTSIZE} from '../theme/theme';
 import GradientBar from './GradientBar';
 import ProfilePix from './ProfilePix';
 
@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    paddingHorizontal: SPACING.space_18,
   },
   HeaderText: {
     fontFamily: FONTFAMILY.poppins_semibold,
