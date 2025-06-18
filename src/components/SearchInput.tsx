@@ -49,8 +49,7 @@ const SearchInput: React.FC<SearchTextInput> = memo(({value, handleSearch}) => {
       </TouchableOpacity>
       <TextInput
         showSoftInputOnFocus={true} // default is true
-        autoFocus={true}
-        style={styles.TextInput}
+        style={[styles.TextInput]}
         cursorColor={
           value?.length > 0
             ? COLORS.primaryOrangeHex
@@ -71,22 +70,24 @@ const styles = StyleSheet.create({
   TextInput: {
     color: COLORS.primaryOrangeHex,
     fontFamily: FONTFAMILY.poppins_regular,
-    fontSize: FONTSIZE.size_16,
+    fontSize: FONTSIZE.size_12,
     flex: 1,
   },
 
   InputIcon: {
     marginHorizontal: SPACING.space_10,
   },
-  TextContainer: {},
+  TextContainer: {
+    backgroundColor: 'red',
+  },
   InputContainerComponent: {
-    marginVertical: SPACING.space_12,
+    // marginVertical: SPACING.space_12,
     // marginHorizontal: SPACING.space_16,
     borderRadius: BORDERRADIUS.radius_20,
     backgroundColor: COLORS.primaryGreyHex,
     flexDirection: 'row',
     alignItems: 'center',
-    flex: 1,
-    height: SPACING.space_18 * 2.8,
+    // flex: 1,
+    // height: SPACING.space_18 * 2.8,
   },
 });

@@ -2,23 +2,15 @@
 import React, {useEffect} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
-// import OrderHistoryScreen from './src/screens/OrderHistoryScreen';
-// import FavoriteScreen from './src/screens/FavoriteScreen';
 import DetailsScreen from './src/screens/DetailsScreen';
 import PaymentScreen from './src/screens/PaymentScreen';
 import TabNavigator from './src/navigation/TabNavigator';
-import log from './src/utils/logger';
 
 const stack = createNativeStackNavigator();
 const App = () => {
-  // useEffect(() => {
-  //   log.info('App mounted');
-  //   log.info('App is running');
-  // }, []);
   return (
     <NavigationContainer>
-      <stack.Navigator screenOptions={{headerShown: false}}>
+      <stack.Navigator screenOptions={{headerShown: false}} >
         <stack.Screen
           name="Tabs"
           component={TabNavigator}

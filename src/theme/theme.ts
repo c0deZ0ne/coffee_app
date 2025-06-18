@@ -4,6 +4,8 @@ interface Spacing {
   space_8: number;
   space_10: number;
   space_12: number;
+  space_13: number;
+  space_14: number;
   space_15: number;
   space_16: number;
   space_18: number;
@@ -21,6 +23,8 @@ export const SPACING: Spacing = {
   space_8: 8,
   space_10: 10,
   space_12: 12,
+  space_13: 13,
+  space_14: 14,
   space_15: 15,
   space_16: 16,
   space_18: 18,

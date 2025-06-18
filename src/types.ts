@@ -1,3 +1,5 @@
+import {ImageSourcePropType} from 'react-native';
+
 export interface HeaderBarProps {
   title: string;
   onBackPress?: () => void;
@@ -17,4 +19,24 @@ export interface GradientBGIconProps {
 export interface SearchTextInput {
   value: string;
   handleSearch: (search: string) => void;
+}
+
+export interface CoffeeCardProps {
+  name: string;
+  id: string;
+  index: number;
+  type: string;
+  roasted: string;
+  imageLink_square: ImageSourcePropType;
+  special_ingredient: string;
+  average_rating: string;
+  price: number;
+  buttonPressHandler: () => void;
+}
+
+export interface BGIconProps {
+  name: string;
+  color: string;
+  size: number;
+  BGColor: string;
 }
