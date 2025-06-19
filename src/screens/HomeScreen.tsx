@@ -24,6 +24,7 @@ import {HeaderBar} from '../components/HeaderBar';
 import SearchInput from '../components/SearchInput';
 import CoffeeCard from '../components/CoffeeCard';
 import {useBottomTabBarHeight} from '@react-navigation/bottom-tabs';
+import EmptyComponent from '../components/EmptyComponent';
 
 const styles = StyleSheet.create({
   screenTitle: {
@@ -91,7 +92,8 @@ const styles = StyleSheet.create({
   },
 });
 
-const HomeScreen = () => {
+const HomeScreen = ({navigation}: any) => {
+  console.log(navigation);
   const tabBarHeight = useBottomTabBarHeight();
   const CoffeeFlatRef = useRef<FlatList<any>>(null);
   const categoryScrollRef = useRef<ScrollView>(null);
@@ -119,6 +121,33 @@ const HomeScreen = () => {
     log.debug('sortedCoffeeList', sortedCoffeeList.length);
   }, [sortedCoffeeList]);
 
+  const resetSearchCoffee = () => {
+    CoffeeFlatRef.current?.scrollToOffset({
+      animated: true,
+      offset: 0,
+    });
+    setCategoryIndex({index: 0, category: categories[0]});
+    setSortedCoffeeList([...CoffeeList]);
+    setSearch('');
+  };
+
+  useEffect(() => {
+    const searchCoffee = (searchString: string) => {
+      if (searchString !== '') {
+        CoffeeFlatRef.current?.scrollToOffset({
+          animated: true,
+          offset: 0,
+        });
+        setCategoryIndex({index: 0, category: categories[0]});
+        setSortedCoffeeList([
+          ...CoffeeList.filter((item: any) =>
+            item.name.toLocaleLowerCase().includes(search.toLocaleLowerCase()),
+          ),
+        ]);
+      }
+    };
+    searchCoffee(search);
+  }, [search, CoffeeList, categories]);
   return (
     <View style={styles.screenContainer}>
       <SafeAreaView />
@@ -130,7 +159,11 @@ const HomeScreen = () => {
         <Text style={styles.screenTitle}>
           Find The Best{'\n'}Coffee For You
         </Text>
-        <SearchInput value={search} handleSearch={setSearch} />
+        <SearchInput
+          value={search}
+          handleSearch={setSearch}
+          resetSearchCoffee={resetSearchCoffee}
+        />
 
         {/* CATEGORIES */}
         <ScrollView
@@ -172,7 +205,7 @@ const HomeScreen = () => {
                   const isOutOfView = x < 0 || x + width > scrollViewWidth;
 
                   if (isOutOfView) {
-                    const scrollOffset = x - 20; // buffer
+                    const scrollOffset = x - 20;
                     categoryScrollRef.current?.scrollTo({
                       x: scrollOffset > 0 ? scrollOffset : 0,
                       animated: true,
@@ -198,13 +231,16 @@ const HomeScreen = () => {
         {/* COFFEE LIST */}
         <FlatList
           ref={CoffeeFlatRef}
+          ListEmptyComponent={<EmptyComponent message={'No Data Available'} />}
           style={styles.CoffeeFlatListContainer}
           keyExtractor={({item, index}) => item?.id}
           horizontal
           showsHorizontalScrollIndicator={false}
           data={sortedCoffeeList}
           renderItem={({item, index}) => (
-            <TouchableOpacity key={item.id}>
+            <TouchableOpacity
+              key={item.id}
+              onPress={() => navigation.push('Details')}>
               <CoffeeCard
                 name={item.name}
                 id={item.id}
@@ -216,7 +252,7 @@ const HomeScreen = () => {
                 average_rating={item.average_rating}
                 price={item.prices[0].price}
                 buttonPressHandler={() => {
-                  throw new Error('Function not implemented.');
+                  // searchCoffee(se);
                 }}
               />
             </TouchableOpacity>

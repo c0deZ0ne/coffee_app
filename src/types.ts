@@ -19,6 +19,7 @@ export interface GradientBGIconProps {
 export interface SearchTextInput {
   value: string;
   handleSearch: (search: string) => void;
+  resetSearchCoffee: () => void;
 }
 
 export interface CoffeeCardProps {
